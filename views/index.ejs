@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Sayfası</title>
+</head>
+<body>
+  
+    <p><%= kullanici_adi %></p>
+    <h1>Sohbetler</h1>
+    <ul>
+        <% sohbetler_sql.forEach(function(sohbet) { %>
+            <li>
+                <form action="/sohbet/<%= sohbet.sohbet_key %>" method="post">
+                    <!-- Mevcut kullanıcı adı ve şifre verileri gizli alanlar olarak eklenir -->
+                    <input type="hidden" name="kullanici_adi" value="<%= kullanici_adi %>">
+                    <input type="hidden" name="sifre" value="<%= sifre %>">
+                    <!-- Buton -->
+                    <button type="submit" name="user1_id" value="<%= sohbet.user2_id %>">
+                        <%= sohbet.user2_id %>
+                    </button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+
+</body>
+</html>
