@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Sayfası</title>
+    <link rel=”stylesheet” type=”text/css” href="style.css"/>
+    <style>
+        body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+  }
+  
+  h1 {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 50px;
+  }
+  
+  .mobile-phone {
+    margin: auto;
+    margin-top: 170px;
+    padding: 10px 10px 30px;
+    width: 350px;
+    height: 600px;
+    box-shadow: 0 0 20px #e2e2e2;
+    border-radius: 30px;
+  }
+  
+  .screen {
+    width: 100%;
+    height: 100%;
+    background: #f2f2f2;
+    border-radius: 30px;
+    overflow-y: auto;
+  }
+  
+  .brove {
+    width: 150px;
+    height: 20px;
+    background: white;
+    position: absolute;
+    margin: 0 100px;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .speaker {
+    width: 60px;
+    height: 5px;
+    background: #d2d2d2;
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+    border-radius: 20px;
+  }
+  
+    </style>
+</head>
+
+<body>
+
+    <div class='mobile-phone'>
+        <div class='brove'><span class='speaker'></span></div>
+        <div class='screen'>
+            <h2>Hoş geldin! <%= kullanici_adi %></h2>
+            <ul>
+                <% sohbetler_sql.forEach(function(sohbet) { %>
+                    <li>
+                        <form action="/sohbet/<%= sohbet.sohbet_key %>" method="post">
+                            <!-- Mevcut kullanıcı adı ve şifre verileri gizli alanlar olarak eklenir -->
+                            <input type="hidden" name="kullanici_adi" value="<%= kullanici_adi %>">
+                            <input type="hidden" name="sifre" value="<%= sifre %>">
+                            <!-- Buton -->
+                            <button type="submit" name="user1_id" value="<%= sohbet.user2_id %>">
+                                <%= sohbet.user2_id %>
+                            </button>
+                        </form>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+      </div>
+  
+
+
+</body>
+
+<style>
+    body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #005a1b;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #024100;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: #cc0044;
+    color: #fff;
+    border: none;
+    padding: 20px 150px; 
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:focus {
+    outline: none;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Butonları yatayda ortala */
+}
+
+/* Görsel Efektler */
+
+.container {
+    position: relative;
+    overflow: hidden;
+}
+
+.container:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    background: linear-gradient(to bottom right, #007bff, #00fffb);
+    z-index: -1;
+    border-radius: 20px;
+    transition: opacity 0.5s ease;
+}
+
+.container:hover:before {
+    opacity: 0.3;
+}
+
+</style>
+</html>

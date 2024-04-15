@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Sayfası</title>
+
+  <style>
+        body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: #005a1b;
+  }
+  
+  h1 {
+    text-align: center;
+
+    width: 100%;
+    top: 50px;
+  }
+
+  h2 {
+    text-align: center;
+    width: 100%;
+    top: 50px;
+    color: rgb(0, 102, 26);
+  }
+  
+  .mobile-phone {
+    margin: auto;
+    margin-top: 170px;
+    padding: 10px 10px 30px;
+    width: 350px;
+    height: 600px;
+    box-shadow: 0 0 20px #e2e2e2;
+    border-radius: 30px;
+  }
+  
+  .screen {
+    width: 100%;
+    height: 100%;
+    background: #f2f2f2;
+    border-radius: 30px;
+    overflow-y: auto;
+  }
+  
+  .brove {
+    width: 150px;
+    height: 20px;
+    background: white;
+    position: absolute;
+    margin: 0 100px;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .speaker {
+    width: 60px;
+    height: 5px;
+    background: #d2d2d2;
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+    border-radius: 20px;
+  }
+
+  .mesaj-gonderen{
+    text-align: right;
+  }
+
+  .textbox {
+    width: 100%;
+    padding: 10px;
+    padding-left: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.textbox:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    margin-left:40%;
+    cursor: pointer;
+    border: 2px solid #004d11;
+    border-radius: 5px;
+    color: #005507;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+  
+    </style> 
+
+</head>
+<body>
+
+
+<div class='mobile-phone'>
+  <div class='brove'><span class='speaker'></span></div>
+  <div class='screen'>
+
+    <h2><%= sohbet_edilen_kisi %></h2>
+    <div id="mesajlar">
+        <% yazilar_sql.forEach(function(mesaj) { %>
+            <% if(mesaj.gonderen === sohbet_edilen_kisi) { %>
+                <!-- Kullanıcı tarafından gönderilen mesaj -->
+                <div>
+                    <p><strong><%= mesaj.gonderen %>:</strong> <%= mesaj.yazi %></p>
+                </div>
+            <% } else { %>
+                <!-- Karşı taraftan gelen mesaj -->
+                <div class="mesaj-gonderen">
+                    <p><strong><%= mesaj.gonderen %>:</strong> <%= mesaj.yazi %></p>
+                </div>
+            <% } %>
+        <% }); %>
+    </div>
+
+    <form id="mesajForm" onsubmit="mesajGonder(); return false;">
+        <input type="hidden" name="sohbet_key" id="sohbet_key" value="<%= sohbet_key %>">
+        <input type="hidden"  id="gonderen" name="gonderen" value="<%= kullanici %>">
+        <input type="hidden"  id="alici" name="alici" value="<%= sohbet_edilen_kisi %>">
+        <input type="text" name="yazi"  id="yazi" class ="textbox" placeholder="Mesajınızı buraya yazın">
+        <input type="hidden" name ="mesaj_sahibi" id = "mesaj_sahibi" value="<%= mesaj_sahibi %>">
+        <button type="submit" class = "button">Gönder</button>
+    </form>
+  </div>
+</div>
+  
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        // Sunucudan yeni mesajları dinle
+        var mesaj_sahibi = document.getElementById("mesaj_sahibi").value;
+        socket.on('yeniMesaj', function(mesaj) {
+            // Yeni mesajı ekrana ekle
+            var mesajDiv = document.createElement('div');
+            mesajDiv.innerHTML = "<strong>" + mesaj.gonderen + ":</strong> " + mesaj.yazi;
+            if(mesaj_sahibi == "evet")
+            {
+                mesajDiv.classList.add('mesaj-gonderen');
+            }
+            document.getElementById('mesajlar').appendChild(mesajDiv);
+
+            // Formu temizle
+            form.yazi.value = "";
+       
+        });
+
+        // Mesaj gönderme işlemi
+        function mesajGonder() {
+            var form = document.getElementById('mesajForm');
+            var mesaj = form.yazi.value;
+            var gonderen = form.gonderen.value;
+            var alici = form.alici.value;
+            var sohbet_key = form.sohbet_key.value;
+            socket.emit('yeniMesaj', { gonderen: gonderen, alici: alici, sohbet_key: sohbet_key, yazi: mesaj });
+            // Yeni mesajı sunucuya gönder
+            const mesajAt = {
+        yazi: mesaj, 
+        sohbet_key: sohbet_key, 
+        gonderen: gonderen,
+        alici: alici
+ };
+
+ //! Buraya dikkat et
+ fetch('/mesaj-gonder', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(mesajAt),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Sunucudan gelen yanıtı işleyin (isteğe bağlı)
+        console.log(data);
+    })
+    .catch(error => {
+        // Hata durumunda işlem yapın (isteğe bağlı)
+        console.error('Hata:', error);
+    });
+
+            
+
+        }
+
+    </script>
+</body>
+</html>
