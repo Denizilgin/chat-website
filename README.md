@@ -15,7 +15,9 @@ Bu uygulamanın ilk sayfası giriş ekranıdır. Kullanıcılar bu ekran üzerin
 1. Bu projeyi klonlayın: `git clone https://github.com/denizilgin/chat-website.git`
 2. Proje dizinine gidin: `cd chat-website`
 3. Bağımlılıkları yükleyin: `npm install` , `npm express`
-4. Uygulamayı başlatın: `node app.js`
+4. MySQL Workbench uygulamasını yükleyin.
+5. Dump20240419 veritabanı dosyasını MySQL Workbench uygulamasına import edin ve veritabanı sunucusunu başlatın.
+6. Uygulamayı başlatın: `node app.js`
 
 ## Kullanım
 
