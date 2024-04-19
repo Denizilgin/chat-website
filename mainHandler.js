@@ -9,7 +9,7 @@ function handleMainRequest(req, res) {
     {
         const kullanici_adi = req.body.kullanici_adi;
         const sifre = req.body.sifre;
-        const sql = 'SELECT * FROM kullanici_giris WHERE kullanici_adi = ? AND sifre = ?';
+        const sql = 'SELECT * FROM kullanici_giris WHERE BINARY kullanici_adi = ? AND sifre = ?';
         db.query(sql,[kullanici_adi,sifre], (err,result) => {
             if(err) throw err;
             if(result.length > 0)

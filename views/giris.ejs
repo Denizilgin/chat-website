@@ -1,6 +1,142 @@
 <html>
-    <head></head>
+    <head><style>
+html,body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+.container {
+  background: url(https://i.pinimg.com/originals/e8/d9/4e/e8d94e1e8b6b530ad315e9385290141b.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Arial,Helvetica,sans-serif;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form{
+  margin: 0;
+  position: relative;
+  background: rgba(0,0,0,.7);
+  padding: 60px 10px 20px 10px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+.avatar {
+  position: absolute;
+  background: #74b9ff;
+  border-radius: 50%;
+  top:-10%;
+  left: 40%;
+  z-index: 4;
+}
+.avatar img {
+  width: 64px;
+  height: 64px;
+}
+
+.form-item {
+  padding: 15px 10px 10px 10px;
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 0.5px;
+}
+
+.form-item label {
+  display: block;
+  flex:1;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.form-item input {
+  padding: 4px 0px;
+  flex:1;
+  background: transparent;
+  border-top: none;
+  outline: none;
+  border-left: none;
+  border-right: none;
+  caret-color: #fff;
+  color:#fff;
+  transition: all 200ms;
+  border-bottom-color: #fff;
+}
+
+.form-item input:focus{
+  border-bottom-color: coral;
+}
+
+::placeholder,
+::ms-input-placeholder,
+:ms-input-placeholder{
+  color:#ccc;
+  font-size:12px;
+}
+
+.form-item button {
+  flex:1;
+  display: block;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1em;
+  color:#fff;
+  letter-spacing: .5px;
+  border-radius: 30px;
+  background-color: #ff3838;
+  border: none;
+  outline:none;
+  transition: all 200ms;
+}
+.form-item button:hover {
+  cursor:pointer;
+  background: rgba(255, 56, 56,.7);
+}
+.form-item a {
+  text-decoration: none;
+}
+
+.is-link {
+  color: #fff;
+  flex:1;
+  font-size: 14px;
+}
+
+.is-link:hover {
+  text-decoration: underline;
+}
+
+
+
+    </style></head>
     <body>
+        <div class="container">
+            <form action="/index" method="POST" class="form" autocomplete="off">
+            <div class="avatar">
+              <img src="https://res.cloudinary.com/merobusts/image/upload/v1518264117/head-659651_640.png" alt="avatar">
+            </div>
+              <div class="form-item">
+                <label for="email">Kullanıcı Adı</label>
+                <input type="text" name="kullanici_adi" id = "kullanici_adi" class="is-input" autocomplete="off">
+              </div>
+              <div class="form-item">
+                <label for="password">Şifre</label>
+               <input type="password" name="sifre" class="is-input" placeholder="" id="sifre">
+              </div>
+              <div class="form-item">
+                <button type="submit" class="button is-button">Giriş Yap</button>
+              </div>
+
+            </form>
+          </div>
+
+
+          <!--
     <h1>Giriş Sayfası</h1>
     <form action="/index" method="POST">
         <label for="username">Kullanıcı Adı:</label>
@@ -9,6 +145,7 @@
         <input type="password" id="sifre" name="sifre" required><br><br>
         <button type="submit">Giriş Yap</button>
     </form>
+    -->
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
