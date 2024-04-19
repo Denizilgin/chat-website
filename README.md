@@ -28,10 +28,11 @@ Bu uygulamanın ilk sayfası giriş ekranıdır. Kullanıcılar bu ekran üzerin
 
 ## Proje özellikleri.
 1. Mesajlarınız her sohbetin sahip olduğu özel anahtarın altında veritabanına kaydedilmektedir. Uygulamaya sonradan giriş yapsanız bile mesajlarınız kaybolmamaktadır.
-2. ![image](https://github.com/Denizilgin/chat-website/assets/36126098/bdd11c1d-03b5-4db5-90ae-eaea68e53494)
-3. Giriş yapmamış bir kullanıcı veya bu sohbetten olmayan bir kullanıcı özel sohbet anahtarına sahip olsa bile sohbete erişememektedir.
-4. Fotoğrafta John ve Deniz dışında bir kullanıcıyla bu sohbetin URL'sine gitmeyi denediğimizde (örn. Max)
-5. ![image](https://github.com/Denizilgin/chat-website/assets/36126098/b97fd241-4f9f-4aa9-a83f-446aef794ab2)
+2. ![image](https://github.com/Denizilgin/chat-website/assets/36126098/87a97481-995b-4531-a3ed-328111eef4dd)
+3. ![image](https://github.com/Denizilgin/chat-website/assets/36126098/bdd11c1d-03b5-4db5-90ae-eaea68e53494)
+4. Giriş yapmamış bir kullanıcı veya bu sohbetten olmayan bir kullanıcı özel sohbet anahtarına sahip olsa bile sohbete erişememektedir.
+5. Fotoğrafta John ve Deniz dışında bir kullanıcıyla bu sohbetin URL'sine gitmeyi denediğimizde (örn. Max)
+6. ![image](https://github.com/Denizilgin/chat-website/assets/36126098/b97fd241-4f9f-4aa9-a83f-446aef794ab2)
    
 
 
