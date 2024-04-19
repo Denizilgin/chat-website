@@ -27,7 +27,7 @@ Bu uygulamanın ilk sayfası giriş ekranıdır. Kullanıcılar bu ekran üzerin
 4. Eş zamanlı sohbet özelliğini denemek için yeni bir tarayıcıda farklı hesap ile giriş yapabilirsiniz.
 
 ## Proje özellikleri.
-1. Mesajlarınız her sohbetin sahip olduğu özel anahtarın altında veritabanına kaydedilmektedir.
+1. Mesajlarınız her sohbetin sahip olduğu özel anahtarın altında veritabanına kaydedilmektedir. Uygulamaya sonradan giriş yapsanız bile mesajlarınız kaybolmamaktadır.
 2. ![image](https://github.com/Denizilgin/chat-website/assets/36126098/bdd11c1d-03b5-4db5-90ae-eaea68e53494)
 3. Giriş yapmamış bir kullanıcı veya bu sohbetten olmayan bir kullanıcı özel sohbet anahtarına sahip olsa bile sohbete erişememektedir.
 4. Fotoğrafta John ve Deniz dışında bir kullanıcıyla bu sohbetin URL'sine gitmeyi denediğimizde (örn. Max)
